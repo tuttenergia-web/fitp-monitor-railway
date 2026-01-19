@@ -1,0 +1,16 @@
+{
+  "restart": [
+    {
+      "policy": "no"
+    }
+  ],
+  "auto_destroy": false,
+  "guest": {
+    "cpu_kind": "shared",
+    "cpus": 1,
+    "memory_mb": 512
+  },
+  "metadata": {
+    "fly_process_group": "worker"
+  }
+}

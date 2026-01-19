@@ -1,0 +1,20 @@
+{
+  "config": {
+    "image": "registry.fly.io/fitp-monitor-webkit:latest",
+    "init": {
+      "cmd": [".venv/bin/python", "main.py"]
+    },
+    "guest": {
+      "cpu_kind": "shared",
+      "cpus": 1,
+      "memory_mb": 512
+    },
+    "restart": {
+      "policy": "no"
+    },
+    "metadata": {
+      "fly_process_group": "worker"
+    },
+    "services": []
+  }
+}
