@@ -1,6 +1,7 @@
 import os
 import re
 import time
+import asyncio
 from screenshot import get_screenshot
 from ocr_utils import extract_text
 from scraper import send_telegram_message
@@ -63,7 +64,7 @@ def main():
         club = t.get("club", "")
 
         msg = f"{name}\n{dates}\n{club}"
-        send_telegram_message(f"🏆 Nuovo torneo trovato:\n\n{msg}")
+        asyncio.run(send_telegram_message(f"🏆 Nuovo torneo trovato:\n\n{msg}"))
 
     print("Pipeline OCR completata.")
 
