@@ -1,4 +1,8 @@
 fastapi
 uvicorn[standard]
-playwright
+requests
 python-telegram-bot
+
+# OCR
+paddleocr
+paddlepaddle==2.6.1
