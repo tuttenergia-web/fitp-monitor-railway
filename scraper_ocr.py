@@ -3,12 +3,16 @@ import re
 import time
 from screenshot import get_screenshot
 from ocr_utils import extract_text
-from scraper import (
-    send_telegram_message,
-    is_duplicate,
-    save_seen_tournament,
-    filter_tournament,
-)
+from scraper import send_telegram_message, filter_tournament
+
+# gestione duplicati opzionale
+try:
+    from scraper import is_duplicate, save_seen_tournament
+except ImportError:
+    def is_duplicate(_): 
+        return False
+    def save_seen_tournament(_):
+        pass
 
 # URL FITP con filtro "Milano"
 FITP_URL = "https://www.federtennis.it/FITP_Tornei?provincia=Milano"
