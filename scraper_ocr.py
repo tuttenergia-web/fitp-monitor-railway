@@ -5,7 +5,6 @@ from screenshot import get_screenshot
 from ocr_utils import extract_text
 from scraper import (
     send_telegram_message,
-    is_lombardia_tournament,
     is_duplicate,
     save_seen_tournament,
     filter_tournament,
@@ -65,10 +64,6 @@ def process_tournaments(tournaments):
 
         # Filtri Python (quelli già presenti nel tuo scraper.py)
         if not filter_tournament(text):
-            continue
-
-        # LOMB
-        if not is_lombardia_tournament(text):
             continue
 
         # Duplicati
