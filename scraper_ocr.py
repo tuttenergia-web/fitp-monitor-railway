@@ -3,9 +3,6 @@ import re
 import time
 from screenshot import get_screenshot
 from ocr_utils import extract_text
-filter_tournament
-is_duplicate
-save_seen_tournament
 
 # URL FITP con filtro "Milano"
 FITP_URL = "https://www.federtennis.it/FITP_Tornei?provincia=Milano"
