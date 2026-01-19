@@ -1,29 +1,26 @@
 app = "fitp-monitor-webkit"
 primary_region = "ams"
 
-[build]
-
 [processes]
   app = ".venv/bin/uvicorn server:app --host 0.0.0.0 --port 8000"
   worker = ".venv/bin/python main.py"
 
 [http_service]
   internal_port = 8000
-  force_https = true
-  auto_stop_machines = "stop"
-  auto_start_machines = true
-  min_machines_running = 0
   processes = ["app"]
 
-# Configurazione risorse
-# L'app FastAPI resta a 256MB
 [[vm]]
   processes = ["app"]
   memory = "256mb"
   cpus = 1
 
-# Il worker Playwright/WebKit sale a 512MB
 [[vm]]
   processes = ["worker"]
   memory = "512mb"
   cpus = 1
+
+[services.worker]
+  processes = ["worker"]
+  auto_start_machines = true
+  auto_stop_machines = "off"
+  min_machines_running = 1
