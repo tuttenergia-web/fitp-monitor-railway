@@ -1,19 +1,21 @@
-import os
-from paddleocr import PaddleOCR
-
-# Inizializzazione OCR (una sola volta)
-ocr = PaddleOCR(use_angle_cls=True, lang='it')
+from PIL import Image
+import pytesseract
 
 def extract_text(image_path: str) -> str:
     """
-    Esegue OCR sull'immagine e ritorna il testo estratto.
+    Esegue OCR su un'immagine usando Tesseract.
+    Ritorna il testo estratto come stringa.
     """
-    result = ocr.ocr(image_path, cls=True)
-    lines = []
+    try:
+        img = Image.open(image_path)
 
-    for block in result:
-        for line in block:
-            text = line[1][0]
-            lines.append(text)
+        # Usa lingua italiana se disponibile, altrimenti fallback automatico
+        try:
+            text = pytesseract.image_to_string(img, lang="ita")
+        except:
+            text = pytesseract.image_to_string(img)
 
-    return "\n".join(lines)
+        return text
+
+    except Exception as e:
+        return f"Errore OCR: {e}"

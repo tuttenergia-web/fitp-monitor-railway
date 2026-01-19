@@ -3,6 +3,5 @@ uvicorn[standard]
 requests
 python-telegram-bot
 
-# OCR
-paddleocr
-paddlepaddle==2.6.1
+pytesseract
+Pillow

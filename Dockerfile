@@ -9,6 +9,9 @@ WORKDIR /app
 # Create virtual environment
 RUN python -m venv .venv
 
+# Install system dependencies (Tesseract OCR)
+RUN apt-get update && apt-get install -y tesseract-ocr
+
 # Install Python dependencies
 COPY requirements.txt ./
 RUN .venv/bin/pip install --upgrade pip && \
