@@ -46,18 +46,22 @@ def parse_tournaments_from_text(text: str):
 
 
 def main():
-    print("Avvio pipeline OCR…")
+    print(">>> CICLO OCR AVVIATO")
 
     # 1. Screenshot
+    print(">>> STEP 1: screenshot")
     get_screenshot(FITP_URL, SCREENSHOT_PATH)
 
     # 2. OCR
+    print(">>> STEP 2: OCR")
     text = extract_text(SCREENSHOT_PATH)
 
     # 3. Parsing
+    print(">>> STEP 3: parsing")
     tournaments = parse_tournaments_from_text(text)
 
     # 4. Notifica Telegram per ogni torneo trovato
+    print(">>> STEP 4: invio Telegram")
     for t in tournaments:
         name = t.get("name", "")
         dates = t.get("dates", "")
@@ -66,7 +70,7 @@ def main():
         msg = f"{name}\n{dates}\n{club}"
         asyncio.run(send_telegram_message(f"🏆 Nuovo torneo trovato:\n\n{msg}"))
 
-    print("Pipeline OCR completata.")
+    print(">>> PIPELINE OCR COMPLETATA")
 
 
 if __name__ == "__main__":
